@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
+
+:root {
+    --offwhite: #F5F5F5;
+    --darkgrey: #383838;
+    --mediumgrey: #474747;
+    --holidayred: #F50606;
+    --eventred: #EC6D6D;
+    --eventyellow: #DCE000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sen', sans-serif;
+}
+
+body {
+    background-color: var(--offwhite);
+    width: 100%;
+    height: 100vh; 
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+}
+
+.main__calendar {
+    width: 100vw;
+    height: 55vh;
+    border-radius: 0 0px 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--darkgrey);
+    box-shadow: 0px 9.3px 9.3px hsl(0deg 0% 0% / 0.36);
+}
+
+.main__head {
+    background-color: var(--darkgrey);
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+    color: var(--offwhite);
+}
+
+.header__h1 {
+    font-size: 20px;
+}
+
+.header_button_left, .header_button_right {
+    background-color: var(--darkgrey);
+    border-style: none;
+    font-size: 1.5em;
+    color: var(--offwhite);
+    cursor: pointer;
+
+}
+
+.emptySpace, .plus {
+    width: 2em;
+    height: 20px
+}
+
+/* Händelser */
+.main__event-container {
+    margin-top: 2em;
+    padding: 0 1em;
+}
+
+.events {
+    display: grid;
+    grid-template-columns: 2em 1fr 1fr;
+    padding: 1em 0;
+    border-bottom: 1px solid var(--darkgrey);
+    margin-bottom: 1em;
+}
+
+.event-check {
+    display: flex;
+    justify-self: flex-start;
+    grid-column: 1;
+    grid-row: 1;
+    width: 1.2em;
+}
+
+.event-check:hover,
+.event-heading:hover,
+.event-time:hover,
+.overlay-day-checkbox:hover {
+    cursor: pointer;
+}
+
+.overlay-end-input:hover,
+.overlay-start-input:hover {
+    cursor:text ;
+}
+
+.event-heading {
+    display: flex;
+    justify-self: flex-start;
+    grid-column: 2;
+    grid-row: 1;
+    color:var(--darkgrey)
+}
+
+.event-time {
+    display: flex;
+    justify-self: flex-start;
+    grid-column: 2;
+    grid-row: 2;
+    width: 95%;
+}
+
+.event-heading {
+    color: var(--darkgrey)
+}
+
+.event-delete {
+    grid-column: 3;    
+    grid-row: 1;
+    padding:0.3em 0.8em;
+    border-radius: 10px;
+    border: none;
+    width: 7em;
+    font-weight: 800;
+    cursor: pointer;
+    background-color: var(--eventred);
+    color: var(--darkgrey);
+    justify-self: flex-end;
+    margin-right: 2em;
+}
+
+.add-event-button-plus{
+    border:none;
+    display: block;
+    margin-top: -0.4em;
+    cursor: pointer;
+    color:var(--eventred);
+    background-color: var(--darkgrey);
+    
+}
+
+.add-event-button-text{
+    padding:0.3em 0.8em;
+    border-radius: 10px;
+    border: none;
+    font-weight: 800;
+    display:none;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    background-color: var(--eventred);
+    color: var(--darkgrey);
+    
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 30em;
+    margin: auto;
+    width: 100vw;
+    max-width: 30em;
+    height: 20em;
+    background-color: var(--offwhite);
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2em;
+    row-gap: 1em;
+}
+
+.overlay-heading {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.save-button{
+    grid-column: 3;
+    grid-row:1;
+    justify-self: flex-end;
+    padding: 0.3em 0.8em;
+    border-radius: 10px;
+    border: none;
+    font-weight: 800;
+    width: fit-content;
+    height:fit-content;
+    cursor: pointer;
+    background-color: var(--eventyellow);
+    color: var(--darkgrey); 
+}
+
+.close-overlay-button{
+    grid-column: 1;
+    justify-self: flex ;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    cursor:pointer;
+    color:var(--eventred);
+     background-color: var(--offwhite);
+}
+
+.overlay-event {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+}
+
+.add-event {
+    grid-column: 2 / span 2;
+    grid-row: 2;
+}
+
+.overlay-start {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: center;
+}
+
+.overlay-start-input {
+    grid-column: 2;
+    grid-row: 3;
+    width: 10vw;
+    min-width: 6em;
+    justify-self: flex-start;
+}
+
+.overlay-end {
+    grid-column: 1;
+    grid-row: 4;
+    align-self: center;
+}
+
+.overlay-end-input {
+    grid-column: 2;
+    grid-row: 4;
+    width: 10vw;
+    min-width: 6em;
+}
+
+.overlay-day {
+    grid-column: 1;
+    grid-row: 5;
+    align-self: center;
+}
+
+.overlay-day-checkbox {
+    justify-self: flex-start;
+    width: 2em;
+    grid-column: 2;
+    grid-row: 5;
+}
+
+
+/* tablet */
+@media (min-width:481px) and (max-width:768px) {
+    .main {
+        width: 90vw;
+    }
+    .main__calendar {
+        width: 90vw;
+    }
+
+    .main__events {
+        width: 90vw;
+    }
+    .save-button {
+        grid-column: 3;
+    }
+    .overlay {
+        width: 80vw;
+    }
+}
+
+
+/* laptop, small screens */
+
+@media (min-width:769px) and (max-width:1024px) {
+    .main {
+        width: 90vw;
+
+    }
+
+    .main__calendar {
+        width: 90vw;
+    }
+
+    .main__events {
+        width: 90vw;
+    }
+
+    .add-event-button-text{
+        display: block;
+    }
+    .add-event-button-plus{
+        display:none;
+    }
+    .save-button {
+        grid-column: 3;
+    }
+}
+
+/* desktop, larger screens */
+@media (min-width:1025px) {
+    .main {
+        width: 90vw;
+        max-width: 1024px;
+
+    }
+
+    .main__calendar {
+        width: 90vw;
+        max-width: 1024px;
+    }
+
+    .main__events {
+        width: 90vw;
+        max-width: 1024px;
+    }
+    .add-event-button-text{
+        display: block;
+    }
+    .add-event-button-plus{
+        display:none;
+    }
+    .save-button {
+        grid-column: 3;
+    }
+}
+
+
+/* kalender  */
+
+#calendar {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.week {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.week__days {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: var(--offwhite);
+}
+
+.day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--offwhite)
+}
+
+.day:hover {
+    background-color: var(--offwhite);
+    color: black;
+}
+
+.white > .day {
+    color:#747474;
+    width: 40px;
+    height: 40px;
+}
+
+
+/*tillfällig färg på söndagar */
+.red {
+    color: red;
+}
